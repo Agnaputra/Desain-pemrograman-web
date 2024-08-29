@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membuat Tabel</title>
+</head>
+<body>
+    <!-- Mengubah nilai height dan width menjadi persentase dan menambahkan cellpadding serta cellspacing -->
+    <table border="1" height="100%" width="40%" cellpadding="20" cellspacing="5">
+        <tr>
+            <!-- Menghapus atribut color dan size dari tag <font> -->
+            <td align="right" valign="bottom">
+                <font face="Courier">ini baris pertama kolom pertama</font>
+            </td>
+            <td>ini baris pertama kolom kedua</td>
+            <!-- Menambahkan kolom baru pada baris pertama -->
+            <td>ini baris pertama kolom ketiga</td>
+        </tr>
+        <!-- Baris kedua dengan tiga kolom, kolom pertama dengan colspan="2" -->
+        <tr>
+            <td colspan="2">ini baris kedua kolom pertama</td>
+            <td>ini baris kedua kolom kedua</td> <!-- Kolom baru ditambahkan di sini -->
+        </tr>
+    </table>
+</body>
+</html>
