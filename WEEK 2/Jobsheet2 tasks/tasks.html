@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f2f2f2; /* light gray background */
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .sidebar, .content, .sidebar-two {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .sidebar, .sidebar-two {
+            width: 20%;
+        }
+
+        .content {
+            width: 50%;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #1a73e8; /* link color */
+        }
+
+        .content h1 {
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .sidebar-two p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+    </style>
+    <title>Flexbox Layout</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="sidebar">
+            <h3>Sidebar Satu</h3>
+            <ul>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Link 3</a></li>
+                <li><a href="#">Link 4</a></li>
+                <li><a href="#">Link 5</a></li>
+            </ul>
+        </div>
+        
+        <div class="content">
+            <h1>Judul Artikel</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi. Aenean pharetra magna ac placerat vestibulum lectus mauris ultrices eros.</p>
+            <p>Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Ultrices gravida dictum fusce ut placerat orci nulla.</p>
+        </div>
+        
+        <div class="sidebar-two">
+            <p>Sidebar Dua</p>
+            <p>Elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa id neque aliquam vestibulum.</p>
+        </div>
+    </div>
+
+</body>
+</html>
