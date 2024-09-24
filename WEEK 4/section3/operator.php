@@ -21,11 +21,8 @@ $hasilOr = $a || $b;
 $hasilNotA = !$a;
 $hasilNotB = !$b;
 
-$a += $b;
-$a -= $b;
-$a *= $b;
-$a /= $b;
-$a %= $b;
+$hasilIdentik = $a === $b; // Identik
+$hasilTidakIdentik = $a !== $b; // Tidak identik
 
 echo "Hasil Tambah : {$hasilTambah} <br>";
 echo "Hasil Kurang : {$hasilKurang} <br>";
@@ -50,6 +47,26 @@ echo "Hasil Or : {$hasilOr} <br>";
 echo "Hasil Not A : {$hasilNotA} <br>";
 echo "Hasil Not B : {$hasilNotB} <br>";
 
-echo "$a += $b <br>"
+echo "<br>";
 
-?> 
+// Augmented assignment operations
+$a += $b;
+echo "Hasil a += b : {$a} <br>";
+
+$a -= $b;
+echo "Hasil a -= b : {$a} <br>";
+
+$a *= $b;
+echo "Hasil a *= b : {$a} <br>";
+
+$a /= $b;
+echo "Hasil a /= b : {$a} <br>";
+
+$a %= $b;
+echo "Hasil a %= b : {$a} <br>";
+
+echo "<br>";
+// hasil identik dan tidak identik
+echo "Hasil Identik : {$hasilIdentik} <br>";
+echo "Hasil Tidak Identik : {$hasilTidakIdentik} <br>";
+?>
