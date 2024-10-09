@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src='../jquery-3.7.1.js'></script>
+        <script>
+            $(document).ready(function() {
+                $("button").click(function() {
+                    $("h2").hide(); // Hides the <h2>
+                    $(".subjudul").hide(); // Hides the <h3> with class subjudul
+                    $("#paragraf").hide(); // Hides the first <p> with ID "paragraf"
+                    $("p.dua").hide(); // Correctly selects the second <p> by class
+                    $("div p.paragraf").hide(); // Hides <p> inside the <div> with class "paragraf"
+                });
+            });
+        </script>
+    </head>
+<body>
+    <h2>Ini adalah Judul Bab</h2>
+    <h3 class="subjudul">Ini adalah Sub Judul Bab</h3>
+    <p id="paragraf">Ini adalah paragraf pertama</p>
+    <p class="dua">Ini adalah paragraf kedua</p> <!-- Correctly set as class -->
+    <div>
+        <p class="paragraf">Ini adalah paragraf ketiga</p>
+    </div>
+    <p>Ini paragraf yang akan tetap ditampilkan</p>
+    <button>Klik Saya!</button>
+</body>
+</html>

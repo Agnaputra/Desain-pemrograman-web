@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src='../jquery-3.7.1.js'></script>
+    <script>
+      $(document).ready(function () {
+        // Hide all divs when "Sembunyikan" button is clicked
+        $(".tombol1").click(function () {
+          $("div").hide();
+        });
+
+        // Show all divs when "Tampilkan" button is clicked
+        $(".tombol2").click(function () {
+          $("div").show();
+        });
+
+        // Fade out the divs with different speeds
+        $(".tombol3").click(function () {
+          $("#div1").fadeOut();           // Default fade speed
+          $("#div2").fadeOut("slow");     // Slow fade
+          $("#div3").fadeOut(3000);       // Fade out over 3 seconds
+        });
+
+        // Fade in the divs with different speeds
+        $(".tombol4").click(function () {
+          $("#div1").fadeIn();           // Default fade speed
+          $("#div2").fadeIn("slow");     // Slow fade
+          $("#div3").fadeIn(3000);       // Fade in over 3 seconds
+        });
+
+        // Fade to specific opacity values
+        $(".tombol5").click(function () {
+          $("#div1").fadeTo("slow", 0.15);  // Fade to 15% opacity
+          $("#div2").fadeTo("slow", 0.4);   // Fade to 40% opacity
+          $("#div3").fadeTo("slow", 0.7);   // Fade to 70% opacity
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>JQuery Effect</p>
+    <div id="div1" class="kotak"></div>
+    <br /><br />
+    <div id="div2" class="kotak"></div>
+    <br /><br />
+    <div id="div3" class="kotak"></div>
+    <br /><br />
+    <button class="tombol1">Sembunyikan</button>
+    <button class="tombol2">Tampilkan</button>
+    <button class="tombol3">Fade Out</button>
+    <button class="tombol4">Fade In</button>
+    <button class="tombol5">Fade To</button>
+  </body>
+</html>
