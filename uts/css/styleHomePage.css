@@ -1,6 +1,6 @@
 body {
-  background: #007bff;
-  background: linear-gradient(to right, #0062e6, #33aeff);
+  background: #00ff66;
+  background: linear-gradient(to right, #00ff66, #33AEFF);
   display: flex;
   flex-direction: column;
 }
@@ -73,18 +73,18 @@ main {
 
 .slide img {
   width: 100%;
-  height: auto;
+  height: 500px;
   object-fit: cover;
 }
 
 .nav-link.logout {
-    color: white; 
-    background-color: #dc3545; 
-    padding: 10px 20px; 
-    border-radius: 5px; 
-    transition: background-color 0.3s; 
+  color: white;
+  background-color: #dc3545;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 .nav-link.logout:hover {
-    background-color: #c82333; 
+  background-color: #c82333;
 }
