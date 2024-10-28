@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.login-container, .price-check {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #007bff;
+    padding: 10px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.banner img {
+    width: 100%;
+}
+
+.content {
+    text-align: center;
+    padding: 20px;
+}
+
+.error {
+    color: red;
+}
