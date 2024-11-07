@@ -18,7 +18,7 @@ if (isset($_POST['nama']) && isset($_POST['jenis_kelamin']) && isset($_POST['ala
         // Check if query was successful
         if (mysqli_query($koneksi, $query)) {
             // Redirect to index.php after successful insertion
-            header("Location: index.php");
+            header("Location: ../section1/index.php");
             exit();
         } else {
             // Output error message if query fails

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Data Anggota</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../section1/style.css">
 </head>
 <body>
     <div class="container">
@@ -26,7 +26,7 @@
             <input type="text" name="no_telp" id="no_telp" required>
 
             <button type="submit">Simpan Data</button>
-            <a href="index.php" class="btn-kembali">Kembali</a>
+            <a href="../section1/index.php" class="btn-kembali">Kembali</a>
         </form>
     </div>
 </body>

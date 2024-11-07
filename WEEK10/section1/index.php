@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <h2>Data Anggota</h2>
-    <a href="create.php" class="btn-tambah">Tambah Anggota</a>
+    <a href="../section2/create.php" class="btn-tambah">Tambah Anggota</a>
     <?php
     include('koneksi.php');
 
@@ -27,7 +27,7 @@
                 <td>" . $row["alamat"] . "</td>
                 <td>" . $row["no_telp"] . "</td>
                 <td>
-                    <a href='edit.php?id=" . $row["id"] . "'>Edit</a> |
+                    <a href='../section3/edit.php?id=" . $row["id"] . "'>Edit</a> |
                     <a href='#' onclick='konfirmasiHapus(" . $row["id"] . ", \"" . $row["nama"] . "\")'>Hapus</a>
                 </td>
             </tr>";
@@ -44,7 +44,7 @@
 function konfirmasiHapus(id, nama) {
     var konfirmasi = confirm("Apakah Anda yakin ingin menghapus data dengan Nama " + nama + "?");
     if (konfirmasi) {
-        window.location.href = "proses.php?aksi=hapus&id=" + id;
+        window.location.href = "../section4/proses.php?aksi=hapus&id=" + id;
     }
 }
 </script>
