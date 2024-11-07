@@ -1,9 +1,9 @@
 <?php
-define('HOST','localhost');
-define('USER', 'root');
-define('PASS','');
-define('DB1', 'prakwebdb');
+    define('HOST', 'localhost');
+    define('USER', 'root');
+    define('PASS', '');
+    define('DB1', 'prakwebdb');
 
-// Buat Koneksinya
-$db1 = new mysqli(HOST, USER, PASS, DB1);
+    //buat koneksi
+    $db1 = new mysqli(HOST, USER, PASS, DB1)
 ?>
