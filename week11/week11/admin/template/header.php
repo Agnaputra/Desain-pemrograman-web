@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
-    <title>Aplikasi Kantor Lukman</title>
+    <title>Aplikasi Kantor Agna</title>
 
     <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
 
@@ -240,7 +240,7 @@
     </svg>
 
     <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Aplikasi Kantor Lukman</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Aplikasi Kantor Agna</a>
 
         <ul class="navbar-nav flex-row d-md-none">
             <li class="nav-item text-nowrap">
