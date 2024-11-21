@@ -1,28 +1,23 @@
 <?php
-include("auth.php");
+session_start();
+include 'koneksi.php';  // Include database connection
+include 'csrf.php';     // Include CSRF protection
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Crsf Token -->
     <meta name="csrf-token" content="<?= $_SESSION['csrf_token'] ?>">
-    <!-- Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <!-- Datatable -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <title>Data Anggota</title>
 </head>
-
 <body>
     <nav class="navbar navbar-dark bg-primary">
-        <a href="index.php" class="navbar-brand" style="color: #fff">
-            CRUD Dengan Ajax
-        </a>
+        <a href="index.php" class="navbar-brand" style="color: #fff">CRUD Dengan Ajax</a>
     </nav>
 
     <div class="container">
@@ -71,76 +66,72 @@ include("auth.php");
 
         <div class="data"></div>
     </div>
-    <div class="text-center">&copy; <?= date('Y') ?> Copyright:
-        <a href="https://google.com/">Desain Dan Pemrograman Web</a>
-    </div>
-    <!-- JQuery -->
+
+    <div class="text-center">&copy; <?= date('Y') ?> Copyright: <a href="https://google.com/">Desain Dan Pemrograman Web</a></div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Datatable -->
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
+            // Setup CSRF token
             $.ajaxSetup({
                 headers: {
                     'Csrf-Token': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            // Load data
             $('.data').load("data.php");
 
-
+            // Save or Update
             $("#simpan").click(function() {
                 var data = $('.form-data').serialize();
-                var jenkel1 = document.getElementById("jenkel1").value;
-                var jenkel2 = document.getElementById("jenkel2").value;
-                var nama = document.getElementById("nama").value;
-                var alamat = document.getElementById("alamat").value;
-                var no_telp = document.getElementById("no_telp").value;
 
-                if (nama == "") {
+                // Validation
+                if (document.getElementById("nama").value == "") {
                     document.getElementById("err_nama").innerHTML = "Nama Harus Diisi";
                 } else {
                     document.getElementById("err_nama").innerHTML = "";
                 }
 
-                if (alamat == "") {
+                if (document.getElementById("alamat").value == "") {
                     document.getElementById("err_alamat").innerHTML = "Alamat Harus Diisi";
                 } else {
                     document.getElementById("err_alamat").innerHTML = "";
                 }
 
-                if (document.getElementById("jenkel1").checked == false && document.getElementById("jenkel2").checked == false) {
+                if (!document.getElementById("jenkel1").checked && !document.getElementById("jenkel2").checked) {
                     document.getElementById("err_jenis_kelamin").innerHTML = "Jenis Kelamin Harus Diisi";
                 } else {
                     document.getElementById("err_jenis_kelamin").innerHTML = "";
                 }
 
-                if (no_telp == "") {
+                if (document.getElementById("no_telp").value == "") {
                     document.getElementById("err_no_telp").innerHTML = "No Telepon Harus Diisi";
                 } else {
                     document.getElementById("err_no_telp").innerHTML = "";
                 }
-                if (nama != "" && alamat != "" && (document.getElementById("jenkel1").checked == true || document.getElementById("jenkel2").checked == true) && no_telp != "") {
+
+                // If all fields are valid, submit data
+                if (document.getElementById("nama").value != "" && document.getElementById("alamat").value != "" && (document.getElementById("jenkel1").checked || document.getElementById("jenkel2").checked) && document.getElementById("no_telp").value != "") {
                     $.ajax({
                         type: 'POST',
-                        url: "form_action.php",
+                        url: "form_action.php",  // Ensure the correct path
                         data: data,
-                        success: function() {
+                        success: function(response) {
                             $('.data').load("data.php");
-                            document.getElementById("id").value = "";
                             document.getElementById("form-data").reset();
                         },
-                        error: function(response) {
-                            console.log(response.responseText);
+                        error: function(xhr, status, error) {
+                            console.log("Error: " + error);
                         }
                     });
                 }
-
-            })
+            });
         });
     </script>
 </body>
-
 </html>

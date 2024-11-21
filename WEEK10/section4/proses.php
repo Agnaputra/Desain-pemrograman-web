@@ -1,5 +1,10 @@
 <?php
-include('../section2/koneksi.php');
+include('../section2/koneksi.php'); // Include the SQL Server connection
+
+// Ensure that the connection was established
+if (!$conn) {
+    die("Koneksi database gagal");
+}
 
 // Check if 'aksi' is set in the URL
 if (isset($_GET['aksi'])) {
@@ -10,17 +15,20 @@ if (isset($_GET['aksi'])) {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
-            // Correcting the query: There was a typo in the 'WHERE' clause (should be 'id' instead of 'i')
-            $query = "DELETE FROM anggota WHERE id = $id";
+            // Use a parameterized query for SQL Server to prevent SQL injection
+            $query = "DELETE FROM anggota WHERE id = ?";
+            $params = array($id);
 
-            // Execute the query
-            if (mysqli_query($koneksi, $query)) {
+            // Prepare and execute the query
+            $stmt = sqlsrv_query($conn, $query, $params);
+
+            if ($stmt) {
                 // Redirect to index.php after successful deletion
                 header("Location: ../section1/index.php");
                 exit();
             } else {
                 // Display error message if deletion fails
-                echo "Gagal menghapus data: " . mysqli_error($koneksi);
+                echo "Gagal menghapus data: " . print_r(sqlsrv_errors(), true);
             }
         } else {
             // If ID is not valid or missing
@@ -34,5 +42,5 @@ if (isset($_GET['aksi'])) {
 }
 
 // Close the database connection
-mysqli_close($koneksi);
+sqlsrv_close($conn);
 ?>

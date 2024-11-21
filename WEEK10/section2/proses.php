@@ -13,16 +13,20 @@ if (isset($_POST['nama']) && isset($_POST['jenis_kelamin']) && isset($_POST['ala
     // Perform action based on 'aksi' parameter
     if ($aksi == 'tambah') {
         // Insert data into the database
-        $query = "INSERT INTO anggota (nama, jenis_kelamin, alamat, no_telp) VALUES ('$nama', '$jenis_kelamin', '$alamat', '$no_telp')";
+        $query = "INSERT INTO anggota (nama, jenis_kelamin, alamat, no_telp) VALUES (?, ?, ?, ?)";
+        $params = array($nama, $jenis_kelamin, $alamat, $no_telp);
+
+        // Execute the query
+        $stmt = sqlsrv_query($conn, $query, $params);
 
         // Check if query was successful
-        if (mysqli_query($koneksi, $query)) {
+        if ($stmt) {
             // Redirect to index.php after successful insertion
             header("Location: ../section1/index.php");
             exit();
         } else {
             // Output error message if query fails
-            echo "Gagal menambahkan data: " . mysqli_error($koneksi);
+            echo "Gagal menambahkan data: " . print_r(sqlsrv_errors(), true);
         }
     }
 } else {
@@ -30,5 +34,5 @@ if (isset($_POST['nama']) && isset($_POST['jenis_kelamin']) && isset($_POST['ala
 }
 
 // Close the database connection
-mysqli_close($koneksi);
+sqlsrv_close($conn);
 ?>

@@ -19,10 +19,10 @@
 
     // Query to fetch data from the database
     $query = "SELECT * FROM anggota ORDER BY id DESC";
-    $result = mysqli_query($koneksi, $query);
+    $stmt = sqlsrv_query($conn, $query);
 
-    if (!$result) {
-        die("Query failed: " . mysqli_error($koneksi));
+    if ($stmt === false) {
+        die("Query failed: " . print_r(sqlsrv_errors(), true));
     }
     ?>
     
@@ -41,7 +41,7 @@
         <tbody>
             <?php
             $no = 1;
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
                 $kelamin = ($row["jenis_kelamin"] == 'L') ? 'Laki-Laki' : 'Perempuan';
             ?>
                 <tr>
@@ -81,6 +81,12 @@
             <?php } ?>
         </tbody>
     </table>
+    
+    <?php
+    // Free the statement resource and close the connection
+    sqlsrv_free_stmt($stmt);
+    sqlsrv_close($conn);
+    ?>
 </div>
 
 <!-- Include necessary scripts -->

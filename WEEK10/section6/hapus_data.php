@@ -1,16 +1,15 @@
 <?php
 session_start();
-include 'koneksi.php';
-include 'csrf.php';
+include 'koneksi.php';  // Include database connection
 
 $id = $_POST['id'];
 
+// Delete record
 $query = "DELETE FROM anggota WHERE id=?";
 $sql = $db1->prepare($query);
-$sql->bind_param("i", $id);
-$sql->execute();
+$sql->execute([$id]);
 
 echo json_encode(['success' => 'Sukses']);
 
-$db1->close();
+$db1 = null;
 ?>

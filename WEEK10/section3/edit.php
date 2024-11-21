@@ -8,20 +8,25 @@
 </head>
 <body>
 <?php
-include('../section2/koneksi.php');
+include('../section2/koneksi.php'); // Connect to the database using koneksi.php
 
 // Get the id from the URL query string
 $id = $_GET['id'];
 
-// Query to fetch data based on id
-$query = "SELECT * FROM anggota WHERE id = $id";
-$result = mysqli_query($koneksi, $query);
+// Query to fetch data based on id using sqlsrv
+$query = "SELECT * FROM anggota WHERE id = ?";
+$params = array($id);
+$result = sqlsrv_query($conn, $query, $params);
 
 // Fetch the data as an associative array
-$row = mysqli_fetch_assoc($result);
+if ($result === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+
+$row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 
 // Close the database connection
-mysqli_close($koneksi);
+sqlsrv_close($conn);
 ?>
 
 <div class="container">

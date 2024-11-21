@@ -1,3 +1,14 @@
+<?php
+include('koneksi.php'); // Include the connection file
+
+if ($conn) {
+    echo "Koneksi berhasil.<br />";
+} else {
+    echo "Koneksi Gagal";
+    die(print_r(sqlsrv_errors(), true));
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +20,14 @@
     <h2>Data Anggota</h2>
     <a href="../section2/create.php" class="btn-tambah">Tambah Anggota</a>
     <?php
-    include('koneksi.php');
+    $query  = "SELECT * FROM anggota ORDER BY id DESC";
+    $result = sqlsrv_query($conn, $query);
 
-    $query = "SELECT * FROM anggota ORDER BY id DESC";
-    $result = mysqli_query($koneksi, $query);
-
-    if (mysqli_num_rows($result) > 0) {
+    if ($result && sqlsrv_has_rows($result)) {
         $no = 1;
         echo "<table>";
         echo "<tr><th>No</th><th>Nama</th><th>Jenis Kelamin</th><th>Alamat</th><th>No. Telp</th><th>Aksi</th></tr>";
-        while ($row = mysqli_fetch_array($result)) {
+        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
             $kelamin = ($row["jenis_kelamin"] === 'L') ? 'Laki-Laki' : 'Perempuan';
             echo "<tr>
                 <td>" . $no++ . "</td>
@@ -37,7 +46,7 @@
         echo "Tidak ada data.";
     }
 
-    mysqli_close($koneksi);
+    sqlsrv_close($conn);
     ?>
 </div>
 <script>

@@ -10,12 +10,18 @@ if ($aksi == 'tambah') {
     $alamat = $_POST['alamat'];
     $no_telp = $_POST['no_telp'];
 
+    // SQL query for data insertion
     $query = "INSERT INTO anggota (nama, jenis_kelamin, alamat, no_telp) 
-              VALUES ('$nama', '$jenis_kelamin', '$alamat', '$no_telp')";
-    if (mysqli_query($koneksi, $query)) {
+              VALUES (?, ?, ?, ?)";
+              
+    // Prepare and execute the query
+    $params = array($nama, $jenis_kelamin, $alamat, $no_telp);
+    $stmt = sqlsrv_query($conn, $query, $params);
+    
+    if ($stmt) {
         header("Location: index.php");
     } else {
-        echo "Error: " . mysqli_error($koneksi);
+        echo "Error: " . print_r(sqlsrv_errors(), true);
     }
 }
 
@@ -27,14 +33,20 @@ if ($aksi == 'ubah') {
     $alamat = $_POST['alamat'];
     $no_telp = $_POST['no_telp'];
 
+    // SQL query for data update
     $query = "UPDATE anggota SET 
-              nama = '$nama', jenis_kelamin = '$jenis_kelamin', 
-              alamat = '$alamat', no_telp = '$no_telp' 
-              WHERE id = $id";
-    if (mysqli_query($koneksi, $query)) {
+              nama = ?, jenis_kelamin = ?, 
+              alamat = ?, no_telp = ? 
+              WHERE id = ?";
+              
+    // Prepare and execute the query
+    $params = array($nama, $jenis_kelamin, $alamat, $no_telp, $id);
+    $stmt = sqlsrv_query($conn, $query, $params);
+
+    if ($stmt) {
         header("Location: index.php");
     } else {
-        echo "Error: " . mysqli_error($koneksi);
+        echo "Error: " . print_r(sqlsrv_errors(), true);
     }
 }
 
@@ -42,11 +54,20 @@ if ($aksi == 'hapus') {
     // Handle data deletion
     $id = $_GET['id'];
 
-    $query = "DELETE FROM anggota WHERE id = $id";
-    if (mysqli_query($koneksi, $query)) {
+    // SQL query for data deletion
+    $query = "DELETE FROM anggota WHERE id = ?";
+    
+    // Prepare and execute the query
+    $params = array($id);
+    $stmt = sqlsrv_query($conn, $query, $params);
+    
+    if ($stmt) {
         header("Location: index.php");
     } else {
-        echo "Error: " . mysqli_error($koneksi);
+        echo "Error: " . print_r(sqlsrv_errors(), true);
     }
 }
+
+// Close the SQL Server connection
+sqlsrv_close($conn);
 ?>

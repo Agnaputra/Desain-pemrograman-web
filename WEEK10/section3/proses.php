@@ -1,5 +1,5 @@
 <?php
-include('../section2/koneksi.php');
+include('../section2/koneksi.php'); // Include the connection file
 
 $aksi = $_GET['aksi'];
 
@@ -14,16 +14,20 @@ if ($aksi == 'ubah') {
         $no_telp = $_POST['no_telp'];
 
         // SQL query to update the member data
-        $query = "UPDATE anggota SET nama='$nama', jenis_kelamin='$jenis_kelamin', alamat='$alamat', no_telp='$no_telp' WHERE id=$id";
+        $query = "UPDATE anggota SET nama = ?, jenis_kelamin = ?, alamat = ?, no_telp = ? WHERE id = ?";
+        $params = array($nama, $jenis_kelamin, $alamat, $no_telp, $id);
 
-        // Execute the query and check if it was successful
-        if (mysqli_query($koneksi, $query)) {
+        // Execute the query
+        $stmt = sqlsrv_query($conn, $query, $params);
+
+        // Check if the update was successful
+        if ($stmt) {
             // If successful, redirect to index.php
             header("Location: ../section1/index.php");
             exit();
         } else {
             // If there is an error in updating, display the error message
-            echo "Gagal mengupdate data: " . mysqli_error($koneksi);
+            echo "Gagal mengupdate data: " . print_r(sqlsrv_errors(), true);
         }
     } else {
         // If ID is not set, display an error message
@@ -31,6 +35,6 @@ if ($aksi == 'ubah') {
     }
 
     // Close the database connection
-    mysqli_close($koneksi);
+    sqlsrv_close($conn);
 }
 ?>
