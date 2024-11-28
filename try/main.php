@@ -1,3 +1,23 @@
+<?php
+// Include the database connection file
+include('db.php');
+
+// Initialize message variable for possible error/success messages
+$message = "";
+
+// Example database interaction (optional): Fetch data or perform queries
+// This is just an example to demonstrate interaction with the DB
+// You can replace this with any required queries.
+try {
+    $sql = "SELECT * FROM some_table";  // Replace 'some_table' with your actual table name
+    $stmt = $pdo->query($sql);
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // You can process the data if needed
+} catch (PDOException $e) {
+    $message = "Database error: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -128,6 +148,18 @@
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae facere obcaecati asperiores quod animi vero maxime quidem nobis enim suscipit. Alias illum dolores debitis reiciendis ea numquam eum. Deleniti, aut.
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos consectetur numquam magni sapiente, velit fugiat dolore alias nemo. Veritatis esse labore non nam praesentium beatae unde quod, quam modi expedita.
         </p>
+
+        <!-- Example of displaying database data -->
+        <?php if (!empty($data)): ?>
+            <h3>Database Data:</h3>
+            <ul>
+                <?php foreach ($data as $row): ?>
+                    <li><?php echo htmlspecialchars($row['column_name']); ?></li>  <!-- Replace 'column_name' with your actual column name -->
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <p>No data found.</p>
+        <?php endif; ?>
     </div>
 
     <!-- Optional JavaScript -->
